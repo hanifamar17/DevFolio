@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Web Developer Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex items-center pt-24 pb-12 bg-gradient-to-br from-neutral-50 to-white">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 md:pr-12 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 text-neutral-900 leading-tight">
+                    Web <span class="text-indigo-600">Developer</span> <br>with Passion for Clean Code
+                </h1>
+                <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+                    Crafting elegant and efficient web solutions with Python, Flask, and Django. Focusing on user
+                    experience and code quality.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects"
+                        class="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors shadow-sm inline-flex items-center">
+                        View Projects <i class="ph ph-arrow-down ml-2"></i>
+                    </a>
+                    <a href="#contact"
+                        class="px-6 py-3 border border-neutral-300 text-neutral-800 rounded-md hover:border-indigo-600 hover:text-indigo-600 transition-colors inline-flex items-center">
+                        Contact Me <i class="ph ph-envelope ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative group transition-transform duration-300 hover:scale-105">
+                    <div class="absolute -inset-4 bg-indigo-100 rounded-lg rotate-3"></div>
+                    <div class="relative bg-white p-4 rounded-lg shadow-sm overflow-hidden hover:shadow-xl">
+                        <img src="static/img/developer.svg" alt="Developer"
+                            class="rounded-md w-full max-w-[400px] h-auto transition-transform duration-300 group-hover:scale-105">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-white section-fade">
+    <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl font-bold mb-2 text-center">About Me</h2>
+        <div class="w-24 h-1 bg-indigo-600 mx-auto mb-12"></div>
+
+        <div class="flex flex-col md:flex-row items-center max-w-4xl mx-auto">
+            <a href="https://www.flaticon.com/free-icons/user" title="user icons" target="_blank" rel="noopener noreferrer" class="block md:w-1/3 mb-8 md:mb-0">
+                <div class="relative w-40 h-40 mx-auto rounded-full overflow-hidden shadow-md transition-transform duration-300 hover:scale-105 border-2 border-neutral-200">
+                    <img src="static/img/me.png" alt="Profile Picture"
+                         class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-white/20 bg-opacity-0 hover:bg-opacity-10 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity duration-300">Profil</span>
+                    </div>
+                </div>
+            </a>
+            <div class="md:w-2/3 md:pl-10">
+                <p class="text-neutral-700 mb-4 leading-relaxed">
+                    Hello! I'm a passionate Web Developer with experience in building web applications using Python
+                    frameworks like Flask and Django. I enjoy creating clean, user-friendly, and efficient web
+                    solutions.
+                </p>
+                <p class="text-neutral-700 mb-6 leading-relaxed">
+                    My journey in web development started several years ago, and I've been enhancing my skills ever
+                    since. I focus on delivering high-quality, responsive, and maintainable code that provides excellent
+                    user experiences.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">Python</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">Flask</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">Django</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">HTML/CSS</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">JavaScript</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">Tailwind CSS</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">SQL</span>
+                    <span class="px-3 py-1 bg-neutral-100 text-neutral-800 rounded-full text-sm">Git</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-neutral-50 section-fade">
+    <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl font-bold mb-2 text-center">My Projects</h2>
+        <div class="w-24 h-1 bg-indigo-600 mx-auto mb-4"></div>
+        <p class="text-neutral-600 text-center mb-12 max-w-2xl mx-auto">A selection of web applications built with
+            Python, Flask, and Django.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+            <div
+                class="bg-white rounded-lg overflow-hidden shadow-sm border border-neutral-100 hover:shadow-md transition-shadow">
+                <div class="h-48 overflow-hidden">
+                    <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}"
+                        class="w-full h-full object-cover transition-transform hover:scale-105 duration-500">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-neutral-800">{{ project.title }}</h3>
+                    <p class="text-neutral-600 mb-4 text-sm leading-relaxed">{{ project.description }}</p>
+                    <div class="flex flex-wrap gap-1 mb-4">
+                        {% for tech in project.tech %}
+                        <span class="px-2 py-1 bg-neutral-100 text-neutral-600 rounded text-xs">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="flex justify-between pt-3 border-t border-neutral-100">
+                        <a href="{{ project.github }}"
+                            class="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm">
+                            <i class="ph ph-github-logo"></i> Source Code
+                        </a>
+                        <a href="{{ project.demo }}"
+                            class="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm">
+                            <i class="ph ph-arrow-square-out"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-20 bg-white section-fade">
+    <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl font-bold mb-2 text-center">Skills</h2>
+        <div class="w-24 h-1 bg-indigo-600 mx-auto mb-4"></div>
+        <p class="text-neutral-600 text-center mb-12 max-w-2xl mx-auto">My technical expertise and proficiency levels.
+        </p>
+
+        <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            {% for skill in skills %}
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="font-medium text-neutral-800">{{ skill.name }}</span>
+                    <span class="text-neutral-500 text-sm">{{ skill.level }}%</span>
+                </div>
+                <div class="bg-neutral-200 rounded-full progress-bar">
+                    <div class="bg-indigo-600 rounded-full h-full progress-bar skill-bar"
+                        data-level="{{ skill.level }}"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-neutral-50 section-fade">
+    <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl font-bold mb-2 text-center">Get In Touch</h2>
+        <div class="w-24 h-1 bg-indigo-600 mx-auto mb-4"></div>
+        <p class="text-neutral-600 text-center mb-12 max-w-2xl mx-auto">Have a question or want to work together? Feel
+            free to reach out.</p>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/3 bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-6 text-neutral-800">Contact Info</h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-md mr-4">
+                                <i class="ph ph-envelope text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-neutral-800">Email</p>
+                                <p class="text-neutral-600 text-sm">luciddream982@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-md mr-4">
+                                <i class="ph ph-phone text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-neutral-800">Phone</p>
+                                <p class="text-neutral-600 text-sm">+62 813 9256 6737</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 p-3 rounded-md mr-4">
+                                <i class="ph ph-map-pin text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-neutral-800">Location</p>
+                                <p class="text-neutral-600 text-sm">Yogyakarta, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-neutral-100">
+                        <p class="font-medium text-neutral-800 mb-3">Connect with me</p>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="bg-neutral-100 p-2 rounded-md text-neutral-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
+                                <i class="ph ph-github-logo"></i>
+                            </a>
+                            <!--
+                            <a href="#"
+                                class="bg-neutral-100 p-2 rounded-md text-neutral-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
+                                <i class="ph ph-linkedin-logo"></i>
+                            </a>-->
+                            <a href="#"
+                                class="bg-neutral-100 p-2 rounded-md text-neutral-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
+                                <i class="ph ph-twitter-logo"></i>
+                            </a>
+                            <a href="#"
+                                class="bg-neutral-100 p-2 rounded-md text-neutral-700 hover:bg-indigo-100 hover:text-indigo-600 transition-colors">
+                                <i class="ph ph-instagram-logo"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-6 text-neutral-800">Send a Message</h3>
+
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-neutral-700 font-medium mb-2 text-sm">Name</label>
+                                <input type="text" id="name" name="name"
+                                    class="w-full px-4 py-2 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-neutral-700 font-medium mb-2 text-sm">Email</label>
+                                <input type="email" id="email" name="email"
+                                    class="w-full px-4 py-2 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block text-neutral-700 font-medium mb-2 text-sm">Subject</label>
+                            <input type="text" id="subject" name="subject"
+                                class="w-full px-4 py-2 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block text-neutral-700 font-medium mb-2 text-sm">Message</label>
+                            <textarea id="message" name="message" rows="4"
+                                class="w-full px-4 py-2 border border-neutral-200 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition-colors shadow-sm inline-flex items-center justify-center">
+                            Send Message <i class="ph ph-paper-plane-right ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.skill-bar').forEach(function (el) {
+            el.style.width = el.getAttribute('data-level') + '%';
+        });
+    });
+</script>
+{% endblock %}
