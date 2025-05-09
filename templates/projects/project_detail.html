@@ -1,0 +1,154 @@
+{% extends "base.html" %} {% block title %}Project Detail{% endblock %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+<div class="pt-24 pb-16 bg-neutral-100">
+    <div class="container mx-auto px-4 md:px-6">
+        <!-- Back Button -->
+        <a href="/#projects" class="group flex items-center text-indigo-600 font-medium mb-8 w-fit">
+            <i class="ph ph-arrow-left text-lg mr-2"></i>
+            <span class="border-b border-transparent group-hover:border-indigo-600 transition-colors">Kembali ke
+                Beranda</span>
+        </a>
+
+        <!-- Project Header -->
+        <div class="relative h-60 sm:h-80 md:h-96 overflow-hidden rounded-lg mb-10">
+            <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}"
+                class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white">{{ project.title }}</h1>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="space-y-12">
+            <!-- Description -->
+            <div>
+                <p class="text-neutral-700 text-lg leading-relaxed">{{ project.description }}</p>
+            </div>
+
+            <!-- Technologies -->
+            <div>
+                <h2 class="text-xl font-semibold text-neutral-800 mb-5 flex items-center">
+                    <i class="ph ph-code text-indigo-600 text-xl mr-2"></i>
+                    Teknologi yang Digunakan
+                </h2>
+                <div class="flex flex-wrap gap-2">
+                    {% for tech in project.tech %}
+                    <span
+                        class="px-4 py-2 rounded-full text-sm font-medium bg-indigo-600 text-white hover:-translate-y-0.5 transition-transform duration-200">
+                        {{ tech }}
+                    </span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            {% if project.features %}
+            <div>
+                <h2 class="text-xl font-semibold text-neutral-800 mb-5 flex items-center">
+                    <i class="ph ph-star text-indigo-600 text-xl mr-2 self-center"></i>
+                    Fitur
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {% for feature in project.features %}
+                    <div class="flex items-center p-4 bg-white rounded-lg border-l-4 border-indigo-600">
+                        <i class="ph ph-check-circle text-indigo-600 mr-3 text-lg self-center"></i>
+                        <span class="text-neutral-700">{{ feature }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if project.images %}
+            <div x-data="{ lightboxOpen: false, currentImage: '' }" class="mt-8">
+                <h2 class="text-xl font-semibold text-neutral-800 mb-5 flex items-center">
+                    <i class="ph ph-image text-indigo-600 text-xl mr-2"></i>
+                    Galeri Proyek
+                </h2>
+
+                <!-- Grid Galeri -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {% for image in project.images %}
+                    <div class="aspect-square bg-neutral-100 rounded-lg overflow-hidden relative group shadow-sm cursor-pointer"
+                        @click="lightboxOpen = true; currentImage = '{{ url_for('static', filename=image) }}'">
+                        <img src="{{ url_for('static', filename=image) }}" alt="{{ project.title }}"
+                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i class="ph ph-magnifying-glass text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Modal Lightbox -->
+                <div x-show="lightboxOpen" x-transition
+                    class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4"
+                    @click.away="lightboxOpen = false" @keydown.escape.window="lightboxOpen = false"
+                    style="backdrop-filter: blur(3px);">
+                    <!-- Tombol Close DI LUAR GAMBAR -->
+                    <button @click="lightboxOpen = false"
+                        class="absolute top-4 right-4 text-white text-4xl font-bold hover:text-neutral-300 transition z-50">
+                        &times;
+                    </button>
+
+                    <!-- Kontainer Gambar -->
+                    <img :src="currentImage" alt="Preview"
+                        class="w-full h-auto max-h-[85vh] max-w-6xl rounded-xl shadow-xl object-contain" />
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- GitHub CTA Button -->
+            {% if project.github and project.github != '#' %}
+            <div class="flex justify-center mt-8">
+                <a href="{{ project.github }}" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center justify-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors group">
+                    <i class="ph ph-github-logo text-xl mr-3"></i>
+                    Lihat di GitHub
+                    <i class="ph ph-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Related Projects Section -->
+        {% if related_projects %}
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-neutral-800 mb-6">Proyek Terkait</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% for related in related_projects %}
+                <a href="{{ url_for('project_detail', slug=related.slug) }}" class="group">
+                    <div
+                        class="bg-white rounded-lg overflow-hidden border border-neutral-200 hover:border-indigo-200 transition-colors">
+                        <div class="aspect-video overflow-hidden">
+                            <img src="{{ url_for('static', filename=related.image) }}" alt="{{ related.title }}"
+                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-4">
+                            <h3
+                                class="text-lg font-semibold text-neutral-800 group-hover:text-indigo-600 transition-colors">
+                                {{ related.title }}</h3>
+                            <p class="text-neutral-600 mt-2 text-sm line-clamp-2">{{ related.description }}</p>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize lightbox for gallery images
+    document.addEventListener('DOMContentLoaded', function () {
+        const galleryImages = document.querySelectorAll('.gallery-image');
+        // Add lightbox functionality if needed
+    });
+</script>
+{% endblock %}

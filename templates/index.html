@@ -131,8 +131,8 @@
               class="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm">
               <i class="ph ph-github-logo"></i> Source Code
             </a>
-            <a href="{{ project.demo }}" class="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm">
-              <i class="ph ph-arrow-square-out"></i> Live Demo
+            <a href="{{ url_for('project_detail', slug=project.slug) }}" class="text-indigo-600 hover:text-indigo-800 flex items-center gap-1 text-sm">
+              <i class="ph ph-arrow-square-out"></i> More
             </a>
           </div>
         </div>
@@ -379,6 +379,22 @@
     </div>
   </div>
 </section>
+
+<!--Smooth scroll-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        // Timeout agar scroll dilakukan setelah halaman betul-betul render
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth" });
+        }, 100); // bisa disesuaikan
+      }
+    }
+  });
+</script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

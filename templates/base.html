@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
     <!-- Tailwind CSS (dihasilkan oleh Tailwind CLI) -->
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
     <!-- Font dari Google Fonts -->
@@ -56,11 +57,11 @@
             </a>
             <nav class="hidden md:block">
                 <ul class="flex space-x-8">
-                    <li><a href="#home" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Home</a></li>
-                    <li><a href="#about" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">About</a></li>
-                    <li><a href="#projects" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Projects</a></li>
-                    <li><a href="#skills" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Technical Stack</a></li>
-                    <li><a href="#contact" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Contact</a></li>
+                    <li><a href="/#home" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Home</a></li>
+                    <li><a href="/#about" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">About</a></li>
+                    <li><a href="/#projects" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Projects</a></li>
+                    <li><a href="/#skills" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Technical Stack</a></li>
+                    <li><a href="/#contact" class="nav-link font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Contact</a></li>
                 </ul>
             </nav>
             <button id="mobile-menu-button" class="md:hidden text-neutral-700 focus:outline-none">
@@ -69,11 +70,11 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
             <ul class="px-4 py-2">
-                <li><a href="#home" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Home</a></li>
-                <li><a href="#about" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">About</a></li>
-                <li><a href="#projects" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Projects</a></li>
-                <li><a href="#skills" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Technical Stack</a></li>
-                <li><a href="#contact" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Contact</a></li>
+                <li><a href="/#home" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Home</a></li>
+                <li><a href="/#about" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">About</a></li>
+                <li><a href="/#projects" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Projects</a></li>
+                <li><a href="/#skills" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Technical Stack</a></li>
+                <li><a href="/#contact" class="block py-3 font-medium text-neutral-700 hover:text-indigo-600 transition-colors">Contact</a></li>
             </ul>
         </div>
     </header>
@@ -84,7 +85,7 @@
 
     <footer class="bg-neutral-900 text-neutral-200 py-6">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <div class="mb-6 md:mb-0">
                     <p class="text-lg font-semibold">
                         <span class="text-indigo-400">Dev</span>Folio
